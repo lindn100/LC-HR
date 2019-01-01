@@ -1,0 +1,37 @@
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+//this solution was taken from kakarotssj11, written on Dec 20, 2018. My initial solution was too slow and looked at their solution for a faster runtime. Commented for my understanding.
+class Solution {
+public:
+    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+        ListNode *endValue = new ListNode(0);
+        ListNode *first = l1, *second = l2, *current = endValue;
+        int carry = 0;
+        
+        while(first != NULL || second != NULL) { //looping through each list until the end
+            int x = (first != NULL) ? first->val : 0; //using terniary operator to set x = first.val or 0 if NULL
+            int y = (second != NULL) ? second->val : 0; //same as above for y and second
+            
+            int sum = carry + x + y; //sum is the carry + x + y
+            carry = sum/10; //carry is now the next interger in sum
+            current->next = new ListNode(sum % 10); //next node is decreasing sum by 1 digit
+            current = current->next; //go to next node
+            if(first != NULL) {
+                first = first->next; //if not end of the list, send first and second to next
+            }
+            if(second != NULL) {
+                second = second->next;
+            }
+        }
+        if(carry > 0) { //once loop has ended, if carry > 0, then set current's next to carry
+            current->next = new ListNode(carry);
+        }
+        return endValue->next;
+    }
+};
