@@ -1,0 +1,16 @@
+int countingValleys(int n, string s) {
+    int height = 0;
+    int numValley = 0;
+    for(int i = 0; i < s.length(); ++i) {
+        if(s[i] == 'U') {
+            ++height;
+            if(height == 0) {
+                ++numValley;
+            }
+        } else {
+            --height;
+        }
+    }
+
+    return numValley;
+}
