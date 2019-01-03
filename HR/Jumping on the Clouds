@@ -1,0 +1,17 @@
+int jumpingOnClouds(vector<int> c) {
+    int jumps = 0;
+    int pos = 0;
+    while(true) {
+        if(c[pos+2] == 0 && pos+2 < c.size()) {
+            pos += 2;
+            ++jumps;
+        } else {
+            pos += 1;
+            ++jumps;
+        }
+        if(pos == c.size()-1) {
+            return jumps;
+        }
+    }
+
+}
