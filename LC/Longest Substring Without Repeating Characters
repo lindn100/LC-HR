@@ -1,0 +1,23 @@
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+        int maxLength = 0;
+        int i = 0; //first index of all the substrings
+        unordered_map<char, int> myMap;
+        for(int j = 0; j < s.length(); ++j) {
+            if(myMap.count(s[j]) > 0) {
+                if(myMap[s[j]] >= i) {
+                    i = myMap[s[j]];
+                }
+            }
+            
+            maxLength = max(maxLength, j - i + 1);
+            myMap[s[j]] = j+1;
+        }
+        
+        return maxLength;
+        
+    }
+};
+
+//original solved using brute force O(n^3), but ran into a runtime error. Consulted the discussion section to just use one for loop and have a start varaible instead.
