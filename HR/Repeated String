@@ -1,0 +1,20 @@
+long repeatedString(string s, long n) {
+    long totalA = 0;
+    long originalA = 0;
+    for(int i = 0; i < s.length(); ++i) {
+        if(s[i] == 'a') {
+            ++originalA;
+        }
+    }
+
+    totalA = originalA * (n / s.length()); //this will give us the number of 'a's repeated n times without having to actually calculate it
+
+    for(int i = 0; i < (n%s.length()); ++i) { //using mod to get the remainder of the string
+        if(s[i] == 'a') {
+            ++totalA;
+        }
+    }
+
+    return totalA;
+
+}
