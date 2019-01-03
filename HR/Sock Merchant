@@ -1,0 +1,12 @@
+int sockMerchant(int n, vector<int> ar) {
+    int pairs = 0;
+    unordered_map<int, int> myMap;
+    for(int i = 0; i < ar.size(); ++i) {
+        myMap[ar[i]] += 1;
+        if(myMap[ar[i]] == 2) {
+            ++pairs;
+            myMap[ar[i]] = 0;
+        }
+    }
+    return pairs;
+}
