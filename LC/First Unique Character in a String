@@ -1,0 +1,27 @@
+class Solution {
+public:
+    int firstUniqChar(string s) {
+        bool unique;
+        for(int i = 0; i < s.size(); ++i) {
+            unique = true;
+            for(int j = 0; j < s.size(); ++j) {
+                if(i == j) {
+                    continue;
+                }
+                if(s[i] == s[j]) {
+                    unique = false;
+                    break;
+                }
+            }
+            if(unique)
+            {
+                return i;
+            }
+        }
+        return -1;
+    }
+};
+
+//This is a O(n^2) solution, but it looks as if O(n) solutions are possible after looking at the discussion. This involves creating an int array using the
+ASCII values, and counting the characters. If that character == 1, return i, else -1. This would be a faster solution, but not the way I created it initially,
+and my way passed the intitial test, so leaving for now.
