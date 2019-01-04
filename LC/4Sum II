@@ -1,0 +1,25 @@
+class Solution {
+public:
+    int fourSumCount(vector<int>& A, vector<int>& B, vector<int>& C, vector<int>& D) {
+        int sum = 0;
+        unordered_map<int, int> myMap;
+        for(int i = 0; i < A.size(); ++i ) {
+            for(int j = 0; j < B.size(); ++j) {
+                myMap[A[i] + B[j]]++;
+            }
+        }
+        
+        for(int k = 0; k < C.size(); ++k) {
+            for(int l = 0; l < D.size(); ++l) {
+                auto temp = myMap.find(0-C[k]-D[l]);
+                if(temp != myMap.end()) {
+                    sum += temp->second;
+                }
+            }
+        }
+        
+        return sum;
+    }
+};
+
+//brute force too slow, so the logic here is i + j must be equal to -(k + l) in order equal 0. Thus, put i + j in a hash map, and then find it using the inverse.
