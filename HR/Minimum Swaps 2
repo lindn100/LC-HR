@@ -1,0 +1,17 @@
+int minimumSwaps(vector<int> arr) {
+    int minSwaps = 0;
+    for(int i = 0; i < arr.size(); ++i) {
+        if(arr[i] != i+1) {
+            ++minSwaps;
+        for(int j = i; j < arr.size(); ++j) {
+            if(arr[j] == i+1) {
+                int temp = arr[j];
+                arr[j] = arr[i];
+                arr[i] = temp;
+                break;
+            }
+        }
+    }
+    }
+    return minSwaps;
+}
