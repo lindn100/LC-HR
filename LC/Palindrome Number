@@ -1,0 +1,15 @@
+class Solution {
+public:
+    bool isPalindrome(int x) {
+        string first = to_string(x);
+        string second = first;
+        reverse(second.begin(), second.end());
+        if(first == second) {
+            return true;
+        }
+        return false;
+    }
+
+};
+
+//Theory here is to just convert the int to string, and then make a copy, reverse it and compare. String are much more useful for comparing digits rather than using modular arithmetic.
