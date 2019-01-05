@@ -1,0 +1,14 @@
+vector<int> rotLeft(vector<int> a, int d) {
+    vector<int> newVector(a.size());
+    for(int i = 0; i < a.size(); ++i) {
+        int temp = i;
+        if((temp - d) < 0) {
+            temp += a.size();
+        }
+        temp -= d;
+        newVector[temp] = a[i];
+    }
+
+    return newVector;
+
+}
