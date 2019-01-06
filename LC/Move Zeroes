@@ -1,0 +1,42 @@
+class Solution {
+public:
+    void moveZeroes(vector<int>& nums) {
+        int numZero = 0;
+        for(int i = 0; i < nums.size(); ++i) {
+            if(nums[i] == 0) {
+                ++numZero;
+            }
+        }
+        vector<int> ans;
+        for(int i = 0; i < nums.size(); ++i) {
+            if(nums[i] != 0) {
+                ans.push_back(nums[i]);
+            }
+        }
+        
+        for(int i = 0; i < numZero; ++i) {
+            ans.push_back(0);
+        }
+        
+        for(int i = 0; i < nums.size(); ++i) {
+            nums[i] = ans[i];
+        }
+
+    }
+};
+
+/*This was my approach, but utilized creating another vector to do so. After reading the solution for this problem, there is a more optimal way below:
+
+
+void moveZeroes(vector<int>& nums) {
+    for (int lastNonZeroFoundAt = 0, cur = 0; cur < nums.size(); cur++) {
+        if (nums[cur] != 0) {
+            swap(nums[lastNonZeroFoundAt++], nums[cur]);
+        }
+    }
+}
+
+
+
+
+*/
