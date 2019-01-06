@@ -1,0 +1,18 @@
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    void deleteNode(ListNode* node) {
+        node->val = node->next->val;
+        node->next = node->next->next;
+        
+    }
+};
+
+//Don't think this is a good way to delete. Should iterate through the head, find the corresponding node, modify previous to curernt->next->next and set current->next to NULL. That seems pretty standard, and this question is odd.
