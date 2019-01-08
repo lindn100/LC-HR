@@ -1,0 +1,16 @@
+int alternatingCharacters(string s) {
+    int answer = 0;
+    int i = 0;
+    while(true) {
+        if (i+1 >= s.length()) {
+            break;
+        }
+        if (s[i] == s[i+1]) {
+            ++answer;
+            s.erase(i+1, 1);
+        } else {
+             ++i;
+        }
+    }
+    return answer;
+}
