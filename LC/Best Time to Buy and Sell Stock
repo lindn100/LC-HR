@@ -2,15 +2,14 @@ class Solution {
 public:
     int maxProfit(vector<int>& prices) {
         int sum = 0;
-        for(int i = 1; i < prices.size(); ++i) {
-            if(prices[i] > prices[i-1]) {
-                sum += prices[i] - prices[i-1];
+        int minPrice = INT_MAX;
+        for(int i = 0; i < prices.size(); ++i) {
+            if(prices[i] < minPrice) {
+                minPrice = prices[i];
+            } else if (prices[i] - minPrice > sum) {
+                sum = prices[i] - minPrice;
             }
         }
         return sum;
-        
     }
 };
-
-//used a solution from this, as it simplified the code by a ton. The theory here is the every increment in price added together is equal to the
-total maximum possible profit.
