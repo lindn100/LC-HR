@@ -1,0 +1,18 @@
+int luckBalance(int k, vector<vector<int>> contests) {
+    sort(contests.begin(), contests.end());
+    int sum = 0;
+    int counter = 0;
+    for(int i = contests.size()-1; i >= 0; --i) {
+        if((counter < k) && (contests[i][1] == 1)) {
+            sum += contests[i][0];
+            ++counter;
+        } else if((counter >= k) && (contests[i][1] == 1))
+        {
+            sum -= contests[i][0];
+        } else {
+            sum += contests[i][0];
+        }
+    }
+    return sum;
+
+}
