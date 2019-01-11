@@ -1,0 +1,21 @@
+class Solution {
+public:
+    vector<int> sortArrayByParity(vector<int>& A) {
+        vector<int> evenV;
+        vector<int> oddV;
+        
+        for(int i = 0; i < A.size(); ++i) {
+            if(A[i] % 2 == 0) {
+                evenV.push_back(A[i]);
+            } else {
+                oddV.push_back(A[i]);
+            }
+        }
+                
+        for(int i = 0; i < oddV.size(); ++i) {
+            evenV.push_back(oddV[i]);
+        }
+        return evenV;
+        
+    }
+};
