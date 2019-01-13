@@ -1,0 +1,32 @@
+class Solution {
+public:
+    int calPoints(vector<string>& ops) {
+        int sum = 0;
+        stack<int> myStack;
+        for(int i = 0; i < ops.size(); ++i) {
+            if(ops[i] == "+") {
+                int temp = myStack.top();
+                myStack.pop();
+                int newStack = temp + myStack.top();
+                myStack.push(temp);
+                myStack.push(newStack);
+            } else if (ops[i] == "D") {
+                int temp = 2 * myStack.top();
+                myStack.push(temp);
+            } else if (ops[i] == "C") {
+                myStack.pop();
+            } else {
+                myStack.push(stoi(ops[i]));
+            }
+        }
+        
+        while(!myStack.empty()) {
+            int temp = myStack.top();
+            sum += temp;
+            myStack.pop();
+        }
+        
+        return sum;
+        
+    }
+};
