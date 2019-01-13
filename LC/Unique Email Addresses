@@ -1,0 +1,19 @@
+class Solution {
+public:
+    int numUniqueEmails(vector<string>& emails) {
+        unordered_map<string, int> myMap;
+        for(int i = 0; i < emails.size(); ++i) {
+            int k = emails[i].find('@') + 1;
+            string local = emails[i].substr(0, k);
+            string rest = emails[i].substr(k);
+            if(local.find('+') != string::npos) {
+                local = local.substr(0, local.find('+') + 1);
+            }
+            local.erase(remove(local.begin(), local.end(), '.'), local.end());
+            myMap[local + rest] += 1;
+        }
+        
+        return myMap.size();
+        
+    }
+};
