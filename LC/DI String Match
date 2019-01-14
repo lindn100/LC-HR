@@ -1,0 +1,21 @@
+class Solution {
+public:
+    vector<int> diStringMatch(string S) {
+        
+        int low = 0, high = S.size();
+        vector<int> myV(S.size() + 1);
+        for(int i = 0; i < S.size(); ++i) {
+            if(S[i] == 'I') {
+                myV[i] = low;
+                ++low;
+            } else {
+                myV[i] = high;
+                --high;
+            }
+        }
+        
+        myV[S.size()] = low;
+        return myV;
+        
+    }
+};
