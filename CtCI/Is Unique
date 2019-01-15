@@ -1,0 +1,10 @@
+     public static boolean isUnique(String s) {
+         HashMap<Character, Boolean> myMap = new HashMap<Character, Boolean>();
+         for (int i = 0; i < s.length(); ++i) {
+             if(myMap.containsKey(s.charAt(i)) == true) {
+                 return false;
+             }
+             myMap.put(s.charAt(i), true);
+         }
+         return true;
+    }
