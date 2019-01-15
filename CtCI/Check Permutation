@@ -1,0 +1,18 @@
+bool perm(string s, string t) {
+    if(s.size() != t.size()) {
+        return false;
+    }
+    unordered_map<char, int> myMap;
+    for(char c : s) {
+        myMap[c] += 1;
+    }
+    
+    for(char d : t) {
+        if (myMap[d] == 0) {
+            return false;
+        } else {
+            myMap[d]--;
+        }
+    }
+    return true;
+}
