@@ -1,0 +1,25 @@
+class Solution {
+public:
+    vector<int> selfDividingNumbers(int left, int right) {
+        vector<int> answer;
+        for(int i = left; i <= right; ++i) {
+            if(selfDivide(i)) {
+                answer.push_back(i);
+            }
+        }
+        return answer;
+    }
+    
+    bool selfDivide(int num) {
+        int left = num;
+        int r;
+        while(left) {
+            r = left % 10;
+            if (r == 0 || num % r != 0) {
+                return false;
+            }
+            left /= 10;
+        }
+        return true;
+    }
+};+-
