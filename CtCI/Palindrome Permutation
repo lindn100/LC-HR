@@ -1,0 +1,29 @@
+bool isPalindrome(string s) {
+    s.erase(remove(s.begin(), s.end(), ' '), s.end());
+    unordered_map<char, int> myMap;
+    for(int i = 0; i < s.size(); ++i) {
+        myMap[s[i]] += 1;
+    }
+    
+    if(s.size() % 2 == 0) {
+        for(pair<char, int> element : myMap) {
+            if(element.second % 2 != 0) {
+                return false;
+            }
+        }
+        
+        return true;
+    } else {
+        bool singleLetter = false;
+        for(pair<char, int> element : myMap) {
+            if(element.second % 2 != 0 && !singleLetter) {
+                singleLetter = true;
+            } else if (element.second % 2 != 0 && singleLetter) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
+
+//logic behind this is that a palindrome of even length always has even # of chars, or an odd string as all even and 1 odd. Spaces are unneeded in these solutions, so removed.
