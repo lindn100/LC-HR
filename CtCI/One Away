@@ -1,0 +1,47 @@
+bool checkRemove(string s, string t) {
+    if(s.size() - t.size() > 1) {
+        return false;
+    }
+    for(int i = 0; i < t.size(); ++i) {
+        if(s[i] != s[i]) {
+            s.erase(i, 1);
+            if(s == t) {
+                return false;
+            } else {
+                return true;
+            }
+        }
+    }
+    return true;
+}
+
+bool checkReplace(string s, string t) {
+    bool moreThanOne = false;
+    for(int i = 0; i < s.size(); ++i) {
+        if(s[i] != s[i] && !moreThanOne) {
+            moreThanOne = true;
+        } else if (s[i] != s[i] && moreThanOne) {
+            return false;
+        }
+    }
+    return true;
+}
+
+bool checkAdd(string s, string t) {
+    if(t.size() - s.size() > 1) {
+        return false;
+    }
+    
+    return checkRemove(t, s);
+    
+}
+
+bool oneAway(string s, string t) {
+    if(s.size() > t.size()) {
+        return checkRemove(s, t);
+    } else if (s.size() == t.size()) {
+        return checkReplace(s, t);
+    } else {
+        return checkAdd(s, t);
+    }
+}
