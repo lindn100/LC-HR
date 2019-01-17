@@ -1,0 +1,113 @@
+/******************************************************************************
+
+                              Online C++ Compiler.
+               Code, Compile, Run and Debug C++ program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+*******************************************************************************/
+
+#include <iostream>
+#include <string>
+#include <unordered_map>
+#include <random>
+
+using namespace std;
+
+struct Node {
+	int data = 0;
+	Node * next = NULL;
+};
+
+/**
+ * [insert - insert a node at the head of list]
+ * @param head [head of the list]
+ * @param data [new node's data]
+ */
+void insert( Node * & head, int data )
+{
+	Node * newNode = new Node;
+	newNode->data = data;
+	newNode->next = head;
+	head = newNode;
+}
+
+/**
+ * [printList Helper routine to print list]
+ * @param head [head of the list]
+ */
+void printList( Node * head ) {
+	while( head ) {
+		std::cout << head->data << "-->";
+		head = head->next;
+	}
+	std::cout << "NULL" << std::endl;
+}
+
+//generate a random int between min and max
+/**
+ * [random_range helper routine to generate a random number between min and max (including)]
+ * @param  min [min of range]
+ * @param  max [max of range]
+ * @return     [A random number between min and max]
+ */
+static inline int random_range(const int min, const int max) {
+	std::random_device rd;
+	std::mt19937 mt(rd());
+	std::uniform_int_distribution<int> distribution(min, max);
+	return distribution(mt);
+}
+
+void removeDuplicates(Node *head) {
+    if(head == NULL || (head && (head->next == NULL))) {
+        return;
+    }
+    Node *current = head;
+    while(current != NULL) {
+        Node *runner = current;
+        while(runner->next != NULL) {
+            if(runner->next->data == current->data) {
+                runner->next = runner->next->next;
+            } else {
+                runner = runner->next;
+            }
+        }
+        current = current->next;
+    }
+}
+
+int findKLast(Node *head, int k) {
+    Node *start = head;
+    Node *current = start;
+    while(true) {
+        for(int i = 0; i < k; ++i) {
+            current = current->next;
+            if(i != k-1 && current == NULL) {
+                return -1;
+            }
+        }
+        if(current == NULL) {
+            return start->data;
+        } else {
+            start = start->next;
+            current = start;
+        }
+    }
+}
+
+
+
+int main()
+{
+    Node * head = NULL;
+	for ( int i = 0; i < 10; ++i ) {
+		insert(head, random_range(1,7));
+	}
+	printList(head);
+	removeDuplicates(head);
+	printList(head);
+	cout << findKLast(head, 9) << endl;
+
+    return 0;
+}
+
+//An alternate approach to this was to do it recursively, but I did so iteratively with two pointers. I also returned an int instead of a node, but that's easily changeable if requested.
