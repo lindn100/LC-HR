@@ -1,0 +1,30 @@
+class Solution {
+public:
+    vector<int> sortArrayByParityII(vector<int>& A) {
+        stack<int> oddNums;
+        stack<int> evenNums;
+        int size = A.size();
+        for(int i = 0; i < size; ++i) {
+            if(A[i] % 2 == 0) {
+                evenNums.push(A[i]);
+            } else {
+                oddNums.push(A[i]);
+            }
+        }
+        
+        vector<int> answer;
+        
+        for(int i = 0; i < size; ++i) {
+            if(i % 2 == 0) {
+                answer.push_back(evenNums.top());
+                evenNums.pop();
+            } else {
+                answer.push_back(oddNums.top());
+                oddNums.pop();
+            }
+        }
+        
+        return answer;
+        
+    }
+};
