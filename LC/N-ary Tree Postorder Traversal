@@ -1,0 +1,30 @@
+class Solution {
+public:
+    vector<int> postorder(Node* root) {
+        stack<Node*> myStack;
+        if(root != NULL) {
+            myStack.push(root);
+        }
+        
+        vector<int> answer;
+        Node* lastVisited = NULL;
+        while(!myStack.empty()) {
+            Node* top = myStack.top();
+            if(top->children.empty() || top->children.back() == lastVisited) {
+                lastVisited = top;
+                answer.push_back(top->val);
+                myStack.pop();
+            } else {
+                vector<Node*> next = top->children;
+                reverse(next.begin(), next.end());
+                for (auto e : next) {
+                    myStack.push(e);
+                }
+            }
+        }
+        return answer;
+        
+    }
+};
+
+//answer credit goes to beetlecamera, as this setup with Nodes's containing children is very odd
