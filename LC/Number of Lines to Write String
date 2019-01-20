@@ -1,0 +1,19 @@
+class Solution {
+public:
+    vector<int> numberOfLines(vector<int>& widths, string S) {
+        int lines = 1;
+        int lineCap = 0;
+        for(int i = 0; i < S.size(); ++i) {
+            int w = widths[S[i]-'a'];
+            lineCap += w;
+            if(lineCap > 100) {
+                lines++;
+                lineCap = w;
+            }
+        }
+        vector<int> answer;
+        answer.push_back(lines);
+        answer.push_back(lineCap);
+        return answer;
+    }
+};
