@@ -1,0 +1,29 @@
+class Solution {
+public:
+    int binaryGap(int N) {
+        int answer = 0;
+        int temp = N;
+        int gap = 0;
+        bool foundOne = false;
+        
+        while(temp) {
+            if(temp % 2 != 0) {
+                if(foundOne) {
+                    ++gap;
+                } 
+                if(gap > answer) {
+                    answer = gap;
+                }
+                gap = 0;
+                foundOne = true;
+                }
+            else {
+                if(foundOne) {
+                    ++gap;
+                }
+            }
+            temp >>= 1;
+            }
+        return answer;
+    }
+};
