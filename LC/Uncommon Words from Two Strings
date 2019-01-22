@@ -1,0 +1,36 @@
+class Solution {
+public:
+    vector<string> uncommonFromSentences(string A, string B) {
+        unordered_map<string, int> myMap;
+        string bigS = A + " " + B;
+        
+        int start = 0, end = 0;
+        
+        for(int i = 0; i < bigS.size(); ++i) {
+            if(bigS[i] == ' ') {
+                string temp = bigS.substr(start, end-start);
+                start = end + 1;
+                end += 1;
+                myMap[temp] += 1;
+                
+            } else {
+                ++end;
+            }
+            
+            if(i + 1 == bigS.size()) {
+                string temp = bigS.substr(start, end-start);
+                myMap[temp] += 1;
+            }
+        }
+        vector<string> answer;
+        
+        for(pair<string, int> element : myMap) {
+            if(element.second == 1) {
+                answer.push_back(element.first);
+            }
+        }
+        return answer;
+    }
+};
+
+//this would be a lot easier if I didn't have to write my own .split method in c++
