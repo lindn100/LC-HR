@@ -1,1 +1,27 @@
-
+class Solution {
+public:
+    vector<vector<int>> levelOrder(Node* root) {
+        vector<vector<int>> myV;
+        Search(root, myV, 0);
+        return myV;
+        
+        
+    }
+    
+    void Search(Node* root, vector<vector<int>>& myV, int level) {
+        if(root == NULL) {
+            return;
+        }
+        if(myV.size() <= level) {
+            myV.push_back({});
+        }
+        
+        myV[level].push_back(root->val);
+        
+        for(int i = 0; i < root->children.size(); ++i) {
+            if(root->children[i]) {
+                Search(root->children[i], myV, level + 1);
+            }
+        }
+    }
+};
