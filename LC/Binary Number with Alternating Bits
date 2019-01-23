@@ -1,0 +1,27 @@
+class Solution {
+public:
+    bool hasAlternatingBits(int n) {
+        bool isOne;
+        if(n % 2 == 0) {
+            isOne = true;
+        } else {
+            isOne = false;
+        }
+        
+        while(n) {
+            if(isOne && n % 2 == 1) {
+                return false;
+            } else if(!isOne && n % 2 == 0) {
+                return false;
+            } else if (n % 2 == 1) {
+                isOne = true;
+                n >>= 1;
+            } else {
+                isOne = false;
+                n >>= 1;
+            }
+        }
+        return true;
+        
+    }
+};
