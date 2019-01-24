@@ -1,0 +1,27 @@
+class Solution {
+public:
+    vector<double> averageOfLevels(TreeNode* root) {
+        vector<double> answer;
+        vector<double> count;
+        addChildrenAvg(root, 0, answer, count);
+        for(int i = 0 ;i < answer.size(); ++i) {
+            answer[i] /= count[i];
+        }
+        return answer;
+    }
+    void addChildrenAvg(TreeNode* root, int level, vector<double>& answer, vector<double>& count) {
+        if(!root) {
+            return;
+        }
+        if(answer.size() <= level) {
+            answer.push_back(0);
+            count.push_back(0);
+        }
+        answer[level] += root->val;
+        count[level] += 1;
+        addChildrenAvg(root->left, level+1, answer, count);
+        addChildrenAvg(root->right, level+1, answer, count);
+    }
+};
+
+//very smart use of pushing a 0 into vectors, adding all the node vals into that level index in the vector, then divide by a sepearte count index.
