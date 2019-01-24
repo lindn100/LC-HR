@@ -1,0 +1,19 @@
+class Solution {
+public:
+    int countPrimeSetBits(int L, int R) {
+        int answer = 0;
+        for(int i = L; i <= R; ++i) {
+            bitset<32> num(i);
+            if (isSmallPrime(num.count())) {
+                ++answer;
+            }
+        }
+        return answer;
+    }
+    
+    bool isSmallPrime(int x) {
+        return (x == 2 || x == 3 || x == 5 || x == 7 || x == 11 || x == 13 || x == 17 || x == 19);
+    }
+};
+
+//bitsets are very useful -- time to learn these!
