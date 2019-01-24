@@ -1,0 +1,26 @@
+int32_t insertBits(int32_t N, int32_t M, int i, int j) {
+    if(j - i <= 0) {
+        return N;
+    }
+    
+    int32_t maskOfN = (~0 << (j+1)) | ((1 << i) - 1);
+    //~0 is all 1s
+    //shift left by j+1 to give a result like 1111110000000 (the front is all ones now)
+    //1 << i results in something like 000000100
+    //-1 results in 00000011 (the end is all ones now)
+    //we or these two to combine them
+    //11111000000 or 000000011 is 11111000011 or something like that
+    
+    //now we and that with N to keep N's outside bounds but get rid of all the inside
+    //M << i is the value of M shifted into the correct starting territory
+    //we Or those two to leave outside the boundaries the same and insert the value of M into N, while keeping N
+    return (N & maskOfN) | (M << i);
+}
+
+int main()
+{
+    auto answer = insertBits(0b10000000000, 0b10011, 2, 6);
+    cout << answer << endl;
+
+    return 0;
+}
