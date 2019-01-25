@@ -1,0 +1,24 @@
+class Solution {
+public:
+    string reverseOnlyLetters(string S) {
+        stack<char> myStack;
+        string temp = S;
+        for(int i = 0; i < S.size(); ++i) {
+            if(isalpha(S[i])) {
+                myStack.push(S[i]);
+            }
+        }
+        
+        for(int i = 0; i < S.size(); ++i) {
+            if(isalpha(S[i])) {
+                temp[i] = myStack.top();
+                myStack.pop();
+            }
+        }
+        
+        return temp;
+    }
+};
+
+//isalpha checks that a char is a letter
+//http://www.cplusplus.com/reference/cctype/isalpha/
