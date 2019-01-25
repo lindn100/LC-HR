@@ -1,0 +1,41 @@
+class Solution {
+public:
+    string toGoatLatin(string S) {
+        vector<string> myV;
+        int start = 0;
+        for(int i = 0; i < S.size(); ++i) {
+            if(S[i] == ' ') {
+                myV.push_back(S.substr(start, i-start));
+                start = i + 1;
+                ++i;
+            }
+            if(i == S.size()-1) {
+                myV.push_back(S.substr(start, i-start + 1));
+            }
+        }
+        
+        for(int i = 0; i < myV.size(); ++i) {
+            if(myV[i][0] == 'a' || myV[i][0] == 'e' || myV[i][0] == 'i' || myV[i][0] == 'o' || myV[i][0] == 'u' || myV[i][0] == 'A' || myV[i][0] == 'E' || myV[i][0] == 'I' || myV[i][0] == 'O' || myV[i][0] == 'U') {
+                myV[i] += "ma";
+            } else {
+                char temp = myV[i][0];
+                myV[i].erase(0, 1);
+                myV[i] += temp;
+                myV[i] += "ma";
+            }
+            
+            string aAdd = "";
+            for(int j = 1; j <= i+1; ++j) {
+                aAdd += "a";
+            }
+            myV[i] += aAdd;
+        }
+        
+        string answer = "";
+        for(int i = 0; i < myV.size(); ++i) {
+            answer += myV[i] + " ";
+        }
+        answer.erase(answer.size()-1, 1);
+        return answer;
+    }
+};
