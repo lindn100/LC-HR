@@ -1,0 +1,29 @@
+class Solution {
+public:
+    TreeNode* increasingBST(TreeNode* root) {
+        vector<TreeNode*> answer;
+        inOrderTraversal(root, answer);
+        root = answer[0];
+        TreeNode* current = root;
+        for(int i = 1; i < answer.size(); ++i) {
+            current->right = answer[i];
+            current->left = NULL;
+            current = current->right;
+        }
+        current->right = NULL;
+        current->left = NULL;
+        
+        return root;
+        
+    }
+    
+    void inOrderTraversal(TreeNode* root, vector<TreeNode*> &myV) {
+        if(!root) {
+            return;
+        }
+        
+        inOrderTraversal(root->left, myV);
+        myV.push_back(root);
+        inOrderTraversal(root->right, myV);
+    }
+};
