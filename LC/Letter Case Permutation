@@ -1,0 +1,18 @@
+class Solution {
+public:
+    vector<string> letterCasePermutation(string S) {
+        vector<string> answer;
+        answer.push_back(S);
+        
+        for(int i = 0; i < S.size(); ++i) {
+            if(isalpha(S[i])) {
+                int temp = answer.size();
+                answer.insert(answer.begin(), answer.begin(), answer.end());
+                for(int j = 0; j < temp; ++j) {
+                    answer[j][i] ^= 32;
+                }
+            }
+        }
+        return answer;
+    }
+};
