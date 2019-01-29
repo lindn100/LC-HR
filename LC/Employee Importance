@@ -1,0 +1,20 @@
+class Solution {
+public:
+    int getImportance(vector<Employee*> employees, int id) {
+        unordered_map<int, Employee*> myMap;
+        for(Employee* e : employees) {
+            myMap[e->id] = e;
+        }
+        return dfs(id, myMap);
+        
+    }
+    
+    int dfs(int id, unordered_map<int, Employee*> myMap) {
+        Employee* employee = myMap[id];
+        int answer = employee->importance;
+        for(int sub : employee->subordinates) {
+            answer += dfs(sub, myMap);
+        }
+        return answer;
+    }
+};
