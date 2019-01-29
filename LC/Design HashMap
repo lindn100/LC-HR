@@ -1,0 +1,29 @@
+class MyHashMap {
+public:
+    /** Initialize your data structure here. */
+    MyHashMap() {
+        
+    }
+    
+    /** value will always be non-negative. */
+    void put(int key, int value) {
+        keys.insert(key);
+        myMap[key] = value;
+    }
+    
+    /** Returns the value to which the specified key is mapped, or -1 if this map contains no mapping for the key */
+    int get(int key) {
+        if(keys.find(key) == keys.end()) {
+            return -1;
+        }
+        return myMap[key];   
+    }
+    
+    /** Removes the mapping of the specified value key if this map contains a mapping for the key */
+    void remove(int key) {
+        myMap[key] = -1;
+        keys.erase(key);
+    }
+    unordered_set<int> keys;
+    unordered_map<int, int> myMap;
+};
