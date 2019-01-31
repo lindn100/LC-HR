@@ -1,0 +1,24 @@
+class Solution {
+public:
+    int countBinarySubstrings(string s) {
+        int answer = 0;
+        vector<int> myV(s.size());
+        int temp = 0;
+        myV[0] = 1;
+        for(int i = 1; i < s.size(); ++i) {
+            if(s[i] != s[i-1]) {
+                ++temp;
+                myV[temp] = 1;
+            } else {
+                ++myV[temp];
+            }
+        }
+        
+        for(int i = 1; i <= temp; ++i) {
+            answer += min(myV[i-1], myV[i]);
+        }
+        
+        return answer;
+        
+    }
+};
