@@ -1,0 +1,15 @@
+class Solution {
+public:
+    set<int>values;
+    bool findTarget(TreeNode* root, int k) {
+        if(!root) {
+            return false;
+        }
+
+        if(values.find(k-root->val) != values.end()) {
+            return true;
+        }
+        values.insert(root->val);
+        return findTarget(root->right, k) || findTarget(root->left, k);
+    }
+};
