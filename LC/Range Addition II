@@ -1,0 +1,11 @@
+class Solution {
+public:
+    int maxCount(int m, int n, vector<vector<int>>& ops) {
+        for(vector<int> myV : ops) {
+            m = min(m, myV[0]);
+            n = min(n, myV[1]);
+        }
+        
+        return m * n;
+    }
+};
