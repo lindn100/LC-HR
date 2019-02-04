@@ -1,0 +1,22 @@
+class Solution {
+public:
+    int sumOfLeftLeaves(TreeNode* root) {
+        int sum = 0;
+        inOrder(root, sum);
+        return sum;
+        
+    }
+    
+    void inOrder(TreeNode* root, int &sum) {
+        if(!root) {
+            return;
+        }
+        
+        if(root->left && !root->left->left && !root->left->right) {
+            sum += root->left->val;
+        }
+        
+        inOrder(root->left, sum);
+        inOrder(root->right, sum);
+    }
+};
