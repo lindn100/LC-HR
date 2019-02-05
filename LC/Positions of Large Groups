@@ -1,0 +1,26 @@
+class Solution {
+public:
+    vector<vector<int>> largeGroupPositions(string S) {
+        int count;
+        vector<vector<int>> answer;
+        for(int i = 2; i < S.size(); ++i) {
+            if(S[i] == S[i-1] && S[i] == S[i-2]) {
+                vector<int> temp;
+                temp.push_back(i-2);
+                int k = i; 
+                while(S[i] == S[k]) {
+                    ++k;
+                    if(k == S.size()) {
+                        break;
+                    }
+                }
+                temp.push_back(k-1);
+                answer.push_back(temp);
+                i = k-1;
+            }
+        }
+        
+        return answer;
+        
+    }
+};
