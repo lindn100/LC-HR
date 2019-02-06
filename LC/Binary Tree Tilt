@@ -1,0 +1,19 @@
+class Solution {
+public:
+    int findTilt(TreeNode* root) {
+        int answer = 0;
+        traverse(root, answer);
+        return answer;
+    }
+    
+    int traverse(TreeNode* root, int &answer) {
+        if(!root) {
+            return 0;
+        }
+        
+        int left = traverse(root->left, answer);
+        int right = traverse(root->right, answer);
+        answer += abs(left - right);
+        return left + right + root->val;
+    }
+};
