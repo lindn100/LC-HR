@@ -1,0 +1,21 @@
+class Solution {
+public:
+    int diameterOfBinaryTree(TreeNode* root) {
+        int answer = 1;
+        dfs(root, answer);
+        return answer - 1;
+    }
+    
+    int dfs(TreeNode* root, int &answer) {
+        if(!root) {
+            return 0;
+        }
+        
+        int left = dfs(root->left, answer);
+        int right = dfs(root->right, answer);
+        
+        answer = max(answer, left + right + 1);
+        return max(left, right) + 1;
+        
+    }
+};
