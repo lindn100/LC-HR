@@ -1,0 +1,26 @@
+class Solution {
+public:
+    string convertToBase7(int num) {
+        if(num == 0) {
+            return "0";
+        }
+        bool isNeg = false;
+        if (num < 0) {
+            num *= -1;
+            isNeg = true;
+        }
+        
+        string temp = "";
+        while(num > 0) {
+            temp = to_string(num % 7) + temp;
+            num /= 7;
+        }
+        
+        if(isNeg) {
+            temp = "-" + temp;
+        }
+        
+        return temp;
+        
+    }
+};
