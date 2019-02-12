@@ -1,0 +1,19 @@
+class Solution {
+public:
+    char nextGreatestLetter(vector<char>& letters, char target) {
+        char answer = 'z' + 1;
+        bool findAnswer = false;
+        for(char c : letters) {
+            if(c > target && c < answer) {
+                answer = c;
+                findAnswer = true;
+            }
+        }
+        
+        if(findAnswer) {
+            return answer;
+        } else {
+            return nextGreatestLetter(letters, 'a'-1);
+        }
+    }
+};
