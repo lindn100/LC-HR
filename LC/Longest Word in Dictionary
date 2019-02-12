@@ -1,0 +1,30 @@
+class Solution {
+public:
+    string longestWord(vector<string>& words) {
+        string answer = "";
+        for(int i = 0; i < words.size(); ++i) {
+            string working = words[i];
+            bool isThere = true;
+            for (int j = 0; j < working.size(); ++j) {
+                string temp = working.substr(0, j+1);
+                if(find(words.begin(), words.end(), temp) != words.end()) {
+                    continue;
+                } else {
+                    isThere = false;
+                    break;
+                }
+            }
+            
+            if(isThere && working.size() >= answer.size()) {
+                if(working.size() == answer.size()) {
+                    if(working < answer) {
+                        answer = working;
+                    }
+                } else {
+                    answer = working;
+                }
+            }
+        }
+        return answer;
+    }
+};
