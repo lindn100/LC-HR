@@ -1,0 +1,25 @@
+class Solution {
+public:
+    int findSecondMinimumValue(TreeNode* root) {
+        vector<int> allInts;
+        dfs(root, allInts);
+        sort(allInts.begin(), allInts.end());
+        int minInt = allInts[0];
+        for(int i = 1; i < allInts.size(); ++i) {
+            if(allInts[i] > minInt) {
+                return allInts[i];
+            }
+        }
+        return -1;
+    }
+    
+    void dfs(TreeNode* root, vector<int> &myV) {
+        if(!root) {
+            return;
+        }
+        
+        dfs(root->left, myV);
+        myV.push_back(root->val);
+        dfs(root->right, myV);
+    }
+};
