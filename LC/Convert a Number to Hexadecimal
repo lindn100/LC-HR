@@ -1,0 +1,26 @@
+class Solution {
+public:
+    string toHex(int num) {
+        if(num == 0) {
+            return "0";
+        }
+        int bitNum = 0, count = 0;
+        string answer;
+        
+        while(num && count < 8) {
+            bitNum = num & 15;
+            num >>= 4;
+            if(bitNum > 9) {
+                char temp = bitNum - 10 + 'a';
+                answer += temp;
+            } else {
+                answer += to_string(bitNum);
+            }
+            ++count;
+        }
+        
+        reverse(answer.begin(), answer.end());
+        return answer;
+        
+    }
+};
