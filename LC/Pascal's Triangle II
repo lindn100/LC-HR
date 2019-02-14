@@ -1,0 +1,22 @@
+class Solution {
+public:
+    vector<int> getRow(int rowIndex) {
+        vector<int> answer(rowIndex + 1);
+        
+        int temp = 0;
+        
+        for(int i = 0; i <= rowIndex; ++i) {
+            temp = 1;
+            for(int j = 0; j <= i; ++j) {
+                if(j == 0 || j == i) {
+                    answer[j] = 1;
+                } else {
+                    int temp2 = answer[j];
+                    answer[j] = temp + answer[j];
+                    temp = temp2;
+                }
+            }
+        }
+        return answer;
+    }
+};
