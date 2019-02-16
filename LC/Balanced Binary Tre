@@ -1,0 +1,21 @@
+class Solution {
+public:
+    bool isBalanced(TreeNode* root) {
+        bool flag = true;
+        dfs(root, flag);
+        return flag;
+    }
+    
+    int dfs(TreeNode* root, bool &flag) {
+        if(!root) {
+            return 0;
+        }
+        
+        int left = dfs(root->left, flag);
+        int right = dfs(root->right, flag);
+        if(abs(left-right) > 1) {
+            flag = false;
+        }
+        return 1 + max(left, right);
+    }
+};
