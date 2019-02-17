@@ -1,0 +1,19 @@
+class Solution {
+public:
+    vector<int> powerfulIntegers(int x, int y, int bound) {
+        vector<int> answer;
+        for(int i = 0; i < 18; ++i) {
+            for(int j = 0; j < 18; ++j) {
+                if(pow(x, i) + pow(y, j) > bound) {
+                    break;
+                }
+                if(pow(x, i) + pow(y, j) <= bound && find(answer.begin(), answer.end(), pow(x, i) + pow(y, j)) == answer.end()) {
+                    answer.push_back(pow(x, i) + pow(y, j));
+                }
+                
+            }
+        }
+        sort(answer.begin(), answer.end());
+        return answer;
+    }
+};
