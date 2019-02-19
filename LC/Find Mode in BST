@@ -1,0 +1,33 @@
+class Solution {
+public:
+    vector<int> findMode(TreeNode* root) {
+        unordered_map<int, int> myMap;
+        dfs(root, myMap);
+        
+        vector<int> answers;
+        int maxMode = 0;
+        
+        for(pair<int, int> element : myMap) {
+            if(element.second > maxMode) {
+                maxMode = element.second;
+                answers.clear();
+                answers.push_back(element.first);
+            }
+            if(element.second == maxMode && find(answers.begin(), answers.end(), element.first) == answers.end()) {
+                answers.push_back(element.first);
+            }
+        }
+        return answers;
+        
+    }
+    
+    void dfs(TreeNode* root, unordered_map<int, int> &myMap) {
+        if(!root) {
+            return;
+        }
+        
+        myMap[root->val] += 1;
+        dfs(root->left, myMap);
+        dfs(root->right, myMap);
+    }
+};
