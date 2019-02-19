@@ -1,0 +1,32 @@
+class Solution {
+public:
+    vector<int> findAnagrams(string s, string p) {
+        vector<int> myV(26, 0);
+        vector<int> myV2(26, 0);
+        vector<int> answer;
+        if(s.size() < p.size()) {
+            return answer;
+        }
+        
+        for(int i = 0; i < p.size(); ++i) {
+            myV[s[i] - 'a'] += 1;
+            myV2[p[i] - 'a'] += 1;
+        }
+        
+        if(myV == myV2) {
+            answer.push_back(0);
+        }
+        
+        for(int i = p.size(); i < s.size(); ++i) {
+            myV[s[i] - 'a'] += 1;
+            myV[s[i - p.size()] - 'a'] -= 1;
+            
+            if(myV == myV2) {
+                answer.push_back(i-p.size()+1);
+            }
+        }
+        
+        return answer;
+        
+    }
+};
