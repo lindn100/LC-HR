@@ -1,0 +1,15 @@
+class Solution {
+public:
+    int countSegments(string s) {
+        int answer = 0;
+        for(int i = 0; i < s.size(); ++i) {
+            if(s[i] != ' ' && s[i+1] == ' ') {
+                ++answer;
+            }
+            if(i == s.size()-1 && s[i] != ' ') {
+                ++answer;
+            }
+        }
+        return answer;
+    }
+};
