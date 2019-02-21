@@ -1,0 +1,24 @@
+class Solution {
+public:
+    TreeNode* pruneTree(TreeNode* root) {
+        dfs(root, root->left, true);
+        dfs(root, root->right, false);
+        return root;
+    }
+    
+    void dfs(TreeNode* prev, TreeNode* curr, bool isLeft) {
+        if(!curr) {
+            return;
+        }
+        dfs(curr, curr->left, true);
+        dfs(curr, curr->right, false);
+        
+        if(curr->val == 0 && !curr->left && !curr->right) {
+            if(isLeft) {
+                prev->left = NULL;
+            } else {
+                prev->right = NULL;
+            }
+        }
+    }
+};
