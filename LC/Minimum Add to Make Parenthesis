@@ -1,0 +1,25 @@
+class Solution {
+public:
+    int minAddToMakeValid(string S) {
+        int answer = 0;
+        stack<char> myStack;
+        for(char c : S) {
+            if(c == '(') {
+                myStack.push(c);
+            } else {
+                if(myStack.empty()) {
+                    ++answer;
+                } else {
+                    myStack.pop();
+                }
+            }
+        }
+        
+        while(!myStack.empty()) {
+            ++answer;
+            myStack.pop();
+        }
+        
+        return answer;
+    }
+};
