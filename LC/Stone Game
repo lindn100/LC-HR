@@ -1,0 +1,36 @@
+class Solution {
+public:
+    bool stoneGame(vector<int>& piles) {
+        int alexTotal = 0;
+        int leeTotal = 0;
+        bool alexTurn = true;
+        int start = 0, back = piles.size()-1;
+        
+        while(start != back) {
+            if(alexTurn) {
+                if(piles[start] > piles[back]) {
+                    alexTotal += piles[start];
+                    ++start;
+                } else {
+                    alexTotal += piles[back];
+                    --back;
+                }
+            } else {
+                if(piles[start] > piles[back]) {
+                    leeTotal += piles[start];
+                    ++start;
+                } else {
+                    leeTotal += piles[back];
+                    --back;
+                }
+            }
+        }
+        
+        if(leeTotal >= alexTotal) {
+            return false;
+        }
+        return true;
+    }
+};
+
+//if optimal play, Alex always wins bc he goes first
