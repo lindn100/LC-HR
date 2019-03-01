@@ -1,0 +1,27 @@
+class Solution {
+public:
+    bool isIsomorphic(string s, string t) {
+        unordered_map<char, int> myMap1;
+        unordered_map<char, int> myMap2;
+        
+        for(int i = 0; i < s.size(); ++i) {
+            if(myMap1.count(s[i]) != myMap2.count(t[i])) {
+                return false;
+            }
+            
+            if(myMap1.count(s[i]) == 0) {
+                myMap1[s[i]] = i;
+                myMap2[t[i]] = i;
+            } else {
+                if(myMap1[s[i]] != myMap2[t[i]]) {
+                    return false;
+                }
+                myMap1[s[i]] = i;
+                myMap2[t[i]] = i;
+            }
+        }
+        
+        return true;
+        
+    }
+};
