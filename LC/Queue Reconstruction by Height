@@ -1,0 +1,14 @@
+bool mySort(pair<int,int> a, pair<int,int> b){
+     if(a.first>b.first) return true;
+     return a.first==b.first&&a.second<b.second;};
+
+
+class Solution {
+public:
+    vector<pair<int, int>> reconstructQueue(vector<pair<int, int>>& people) {
+        vector<pair<int, int>> res;
+        sort(people.begin(),people.end(),mySort);
+        for(auto i:people) res.insert(res.begin()+i.second,i);
+        return res;
+    }
+};
