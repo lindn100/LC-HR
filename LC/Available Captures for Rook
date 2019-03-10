@@ -1,0 +1,62 @@
+class Solution {
+public:
+    int numRookCaptures(vector<vector<char>>& board) {
+        
+        bool endGame = false;
+        int kills = 0;
+        
+        for (int i = 0; i < 8 && !endGame; ++i) 
+        {
+            for (int j = 0; j < 8 && !endGame; ++j)
+            {
+                if (board[i][j] == 'R')
+                {
+                    for (int k = i; k > 0; --k) 
+                    {
+                        if (board[k][j] == 'p') {
+                            ++kills;
+                            break;
+                        }
+                        else if (board[k][j] == 'B') {
+                            break;
+                        }
+                    }
+                    for (int k = i; k < 8; ++k) 
+                    {
+                        if (board[k][j] == 'p') {
+                            ++kills;
+                            break;
+                        }
+                        else if (board[k][j] == 'B') {
+                            break;
+                        }
+                    }
+                    
+                    for (int k = i; k > 0; --k) 
+                    {
+                        if (board[i][k] == 'p') {
+                            ++kills;
+                            break;
+                        }
+                        else if (board[i][k] == 'B') {
+                            break;
+                        }
+                    }
+                    for (int k = i; k < 8; ++k) 
+                    {
+                        if (board[i][k] == 'p') {
+                            ++kills;
+                            break;
+                        }
+                        else if (board[i][k] == 'B') {
+                            break;
+                        }
+                    }
+                    
+                    endGame = true;
+                }
+            }
+        }
+        return kills;
+    }
+};
