@@ -1,0 +1,26 @@
+class Solution {
+public:
+    void getInfo(TreeNode * root, unordered_map<int, pair<int, TreeNode*>> & map, const int x, const int y, TreeNode * parent, int depth)
+    {
+        if(!root)
+        {
+            return;
+        }
+        getInfo(root -> left, map, x, y, root, depth + 1);
+        if(root -> val == x)
+        {
+            map[x] = make_pair(depth, parent);
+        }
+        if(root -> val == y)
+        {
+            map[y] = make_pair(depth, parent);
+        }
+        getInfo(root -> right, map, x, y, root, depth + 1);
+    }
+    bool isCousins(TreeNode* root, int x, int y) 
+    {   
+        unordered_map<int, pair<int, TreeNode*>> map;
+        getInfo(root, map, x, y, NULL, 0);
+        return map[x].first == map[y].first && map[x].second != map[y].second;
+    }
+};
