@@ -1,0 +1,11 @@
+class Solution {
+public:
+    int mySqrt(int x) {
+        long val=x;
+        while(val*val>x){
+            val = (val+x/val)/2;
+        }
+        
+        return val;
+    }
+};
