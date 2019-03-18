@@ -1,0 +1,36 @@
+class Solution {
+public:
+    string mostCommonWord(string paragraph, vector<string>& banned) {
+        for(int i = 0; i < paragraph.size(); ++i) {
+            if(isalpha(paragraph[i])) {
+                paragraph[i] = tolower(paragraph[i]);
+            } else if (paragraph[i] != ' ') {
+                paragraph[i] = ' ';
+            }
+        }
+        
+        stringstream ss(paragraph);
+        unordered_map<string, int> myMap;
+        string temp;
+        
+        for(int i = 0; ss >> temp; ++i) {
+            myMap[temp] += 1;
+        }
+        
+        for(string s : banned) {
+            myMap[s] = 0;
+        }
+        
+        int maxCount = 0;
+        string answer = "";
+        for(pair<string, int> element : myMap) {
+            if(element.second > maxCount) {
+                maxCount = element.second;
+                answer = element.first;
+            }
+        }
+        
+        return answer;
+        
+    }
+};
