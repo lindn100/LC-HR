@@ -1,0 +1,16 @@
+class Solution {
+public:
+    int countSubstrings(string s) {
+        int size = s.size(), answer = 0;
+        for(int center = 0; center <= 2*size-1; ++center) {
+            int left = center / 2;
+            int right = left + center % 2;
+            while(left >= 0 && right < size && s[left] == s[right]) {
+                ++answer;
+                --left;
+                ++right;
+            }
+        }
+        return answer;
+    }
+};
