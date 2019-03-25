@@ -1,0 +1,35 @@
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    unordered_map<TreeNode*, int> myMap;
+    int rob(TreeNode* root) {
+        return dfs(root, true);
+    }
+    
+    int dfs(TreeNode* root, bool selected) {
+        if(!root) {
+            return 0;
+        }
+        
+        if(myMap.count(root) != 0) {
+            if(selected) {
+                return myMap[root];
+            } else {
+                return myMap[root->left] + myMap[root->right];
+            }
+        }
+        
+        if(selected) {
+            myMap[root] = max(root->val + dfs(root->left, false) + dfs(root->right, false), dfs(root->left, true)+dfs(root->right, true));
+        }
+        return myMap[root];
+    }
+};
