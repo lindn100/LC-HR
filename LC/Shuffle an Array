@@ -1,0 +1,22 @@
+class Solution {
+public:
+    vector<int> numbers;
+    Solution(vector<int> nums) {
+        numbers = nums;
+    }
+    
+    /** Resets the array to its original configuration and return it. */
+    vector<int> reset() {
+        return numbers;
+    }
+    
+    /** Returns a random shuffling of the array. */
+    vector<int> shuffle() {
+        vector<int> array = numbers;
+        // C++ swap is an in-place function
+        for(int i = numbers.size(); i>0; i--){
+            swap(array[rand()%i], array[i-1]);
+        }
+        return array;
+    }
+};
