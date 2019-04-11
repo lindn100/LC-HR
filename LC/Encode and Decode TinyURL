@@ -1,0 +1,29 @@
+class Solution {
+public:
+
+    string alphabet = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    unordered_map<string, string> map;
+    string key = getRandom();
+        
+    string getRandom() {
+        string s;
+        for (int i = 0; i < 6 ; i++) {
+        s += alphabet[rand() % 61]; }
+        return s;
+    }
+        
+    // Encodes a URL to a shortened URL.    
+    string encode(string longUrl) {
+        while(map.count(key)) {
+            key = getRandom();
+        }
+        
+        map.insert(make_pair(key, longUrl));
+        return "http://tinyurl.com/" + key;
+    }
+
+    // Decodes a shortened URL to its original URL.
+    string decode(string shortUrl) {
+      return map.at(shortUrl.replace(0,shortUrl.size()-6,""));
+    }
+};
